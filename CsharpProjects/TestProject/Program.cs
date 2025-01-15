@@ -1,22 +1,96 @@
-﻿Random dice = new Random();
+﻿// initialize variables - graded assignments
+int currentAssignments = 5;
 
-int roll1 = dice.Next(1, 7);
-int roll2 = dice.Next(1, 7);
-int roll3 = dice.Next(1, 7);
+int[] sophiaScores = new int[] { 90, 86, 87, 98, 100 };
+int[] andrewScores = new int[] { 92, 89, 81, 96, 90 };
+int[] emmaScores = new int[] { 90, 85, 87, 98, 68 };
+int[] loganScores = new int[] { 90, 95, 87, 88, 96 };
 
-int total = roll1 + roll2 + roll3;
-Console.WriteLine($"Dice roll: {roll1} + {roll2} + {roll3} = {total}");
+// Student names
+string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan" };
 
-if ((roll1 == roll2) || (roll2 == roll3) || (roll1 == roll3)) 
+int[] studentScores = new int[10];
+
+string currentStudentLetterGrade = "";
+
+// Display the Report Header
+Console.WriteLine("Student\t\tGrade\n");
+
+foreach (string name in studentNames)
 {
-    if ((roll1 == roll2) && (roll2 == roll3)) 
+    string currentStudent = name;
+
+    if (currentStudent == "Sophia")
+        // assign Sophia's scores to the studentScores array 
+        studentScores = sophiaScores;
+
+    else if (currentStudent == "Andrew")
+        // assign Andrew's scores to the studentScores array 
+        studentScores = andrewScores;
+
+    else if (currentStudent == "Emma")
+        // assign Emma's scores to the studentScores array 
+        studentScores = emmaScores;
+
+    else if (currentStudent == "Logan")
+        // assign Logan's scores to the studentScores array 
+        studentScores = loganScores;
+
+    // initialize/reset the sum of scored assignments
+    int sumAssignmentScores = 0;
+
+    // initialize/reset the calculated average of exam + extra credit scores
+    decimal currentStudentGrade = 0;
+
+    foreach (int score in studentScores)
     {
-        Console.WriteLine("You rolled triples!  +6 bonus to total!");
-        total += 6; 
-    } 
-    else 
-    {
-        Console.WriteLine("You rolled doubles!  +2 bonus to total!");
-        total += 2;
+        // add the exam score to the sum
+        sumAssignmentScores += score;
     }
+
+    currentStudentGrade = (decimal)(sumAssignmentScores) / currentAssignments;
+
+    if (currentStudentGrade >= 97)
+        currentStudentLetterGrade = "A+";
+
+    else if (currentStudentGrade >= 93)
+        currentStudentLetterGrade = "A";
+
+    else if (currentStudentGrade >= 90)
+        currentStudentLetterGrade = "A-";
+
+    else if (currentStudentGrade >= 87)
+        currentStudentLetterGrade = "B+";
+
+    else if (currentStudentGrade >= 83)
+        currentStudentLetterGrade = "B";
+
+    else if (currentStudentGrade >= 80)
+        currentStudentLetterGrade = "B-";
+
+    else if (currentStudentGrade >= 77)
+        currentStudentLetterGrade = "C+";
+
+    else if (currentStudentGrade >= 73)
+        currentStudentLetterGrade = "C";
+
+    else if (currentStudentGrade >= 70)
+        currentStudentLetterGrade = "C-";
+
+    else if (currentStudentGrade >= 67)
+        currentStudentLetterGrade = "D+";
+
+    else if (currentStudentGrade >= 63)
+        currentStudentLetterGrade = "D";
+
+    else if (currentStudentGrade >= 60)
+        currentStudentLetterGrade = "D-";
+
+    else
+        currentStudentLetterGrade = "F";
+
+    Console.WriteLine($"{name}\t\t{currentStudentGrade}\t?");
 }
+
+Console.WriteLine("Press the Enter key to continue");
+Console.ReadLine();
